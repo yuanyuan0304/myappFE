@@ -26,12 +26,12 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const userId = url.searchParams.get("id") || params.id;
 
   const response = userId
-    ? await fetch("http://localhost:8080/api/getUserById", {
+    ? await fetch("https://myapp-production-3181.up.railway.app/api/getUserById", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: userId }),
       })
-    : await fetch("http://localhost:8080/api/getAllUsers", {
+    : await fetch("https://myapp-production-3181.up.railway.app/api/getAllUsers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({}),
@@ -57,7 +57,7 @@ export async function action({ request }: ActionFunctionArgs) {
           name: formData.get("name"),
           email: formData.get("email"),
         };
-        await fetch("http://localhost:8080/api/createUser", {
+        await fetch("https://myapp-production-3181.up.railway.app/api/createUser", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newUser),
@@ -70,7 +70,7 @@ export async function action({ request }: ActionFunctionArgs) {
           name: formData.get("name"),
           email: formData.get("email"),
         };
-        await fetch(`http://localhost:8080/api/updateUser`, {
+        await fetch(`https://myapp-production-3181.up.railway.app/api/updateUser`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updatedUser),
@@ -78,7 +78,7 @@ export async function action({ request }: ActionFunctionArgs) {
         break;
 
       case "delete":
-        await fetch(`http://localhost:8080/api/deleteUser`, {
+        await fetch(`https://myapp-production-3181.up.railway.app/api/deleteUser`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ id: userId }),
